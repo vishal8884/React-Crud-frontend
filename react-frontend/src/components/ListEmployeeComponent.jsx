@@ -12,22 +12,23 @@ class ListEmployeeComponent extends Component {
         this.addEmployee = this.addEmployee.bind(this);
     }
 
+    addEmployee(){
+        this.props.history.push('/add-employee');
+    }
+
     componentDidMount(){
         EmployeeService.getEmployees().then((res) => {
              this.setState({ employees: res.data});
         });
     }
 
-    addEmployee(){
-        this.props.history.push('/add-employee');
-    }
 
     render() {
         return (
             <div>
                 <h2 className="text-center">Employee List</h2>
                 <div className = "row">
-                   <button className="btn btn-primary" onClick={this.addEmployee}> Add Employee </button>
+                  <center><button className="btn btn-primary" onClick={this.addEmployee}> Add Employee </button> </center> 
                 </div>
                 <div className = "row">
                     <table className = "table table-striped table bordered">

@@ -12,6 +12,11 @@ class ListEmployeeComponent extends Component {
         this.addEmployee = this.addEmployee.bind(this);
         this.editEmployee = this.editEmployee.bind(this); //bind this method to component
         this.deleteEmployee = this.deleteEmployee.bind(this);
+        this.viewEmployee = this.viewEmployee.bind(this);
+    }
+
+    viewEmployee(id){
+        this.props.history.push(`/view-employee/${id}`)
     }
 
     deleteEmployee(id){
@@ -66,7 +71,8 @@ class ListEmployeeComponent extends Component {
                                     <td> {employee.emailId} </td>
                                     <td> 
                                         <button onClick = { () => this.editEmployee(employee.id) } className="btn btn-info">Update</button>
-                                        <button style= {{marginLeft: "10px"}} onClick = { () => this.deleteEmployee(employee.id) } className="btn btn-danger">Deletee</button>
+                                        <button style= {{marginLeft: "10px"}} onClick = { () => this.deleteEmployee(employee.id) } className="btn btn-danger">Delete</button>
+                                        <button style= {{marginLeft: "10px"}} onClick = { () => this.viewEmployee(employee.id) } className="btn btn-info">View</button>
                                     </td>
                                 </tr>
                             )

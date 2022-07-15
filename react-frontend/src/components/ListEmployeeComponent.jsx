@@ -11,14 +11,22 @@ class ListEmployeeComponent extends Component {
         }
         this.addEmployee = this.addEmployee.bind(this);
         this.editEmployee = this.editEmployee.bind(this); //bind this method to component
+        this.deleteEmployee = this.deleteEmployee(this);
+    }
+
+    deleteEmployee(id){
+         //deleting from here itself as no new page for this
+         EmployeeService.deleteEmployee(id).then(res => {
+            this.setState({employees: this.state.employees.filter(employee => employee.id !== id)});
+         });
     }
 
     editEmployee(id){
-        this.props.history.push(`/update-employee/${id}`);
+        this.props.history.push(`/add-employee/${id}`);
     }
 
     addEmployee(){
-        this.props.history.push('/add-employee');
+        this.props.history.push('/add-employee/_add');
     }
 
     componentDidMount(){
@@ -39,6 +47,7 @@ class ListEmployeeComponent extends Component {
                     <table className = "table table-striped table bordered">
                       <thead>
                          <tr>
+                            <th> Employee Id</th>
                             <th> Employee First Name </th>
                             <th> Employee Last Name</th>
                             <th> Employee Email Id</th>
@@ -51,11 +60,13 @@ class ListEmployeeComponent extends Component {
                             this.state.employees.map(
                                 employee => 
                                 <tr key = {employee.id}>
+                                    <td> {employee.id}</td>
                                     <td> {employee.firstName} </td>
                                     <td> {employee.lastName} </td>
                                     <td> {employee.emailId} </td>
                                     <td> 
                                         <button onClick = { () => this.editEmployee(employee.id) } className="btn btn-info">Update</button>
+                                        <button style= {{marginLeft: "10px"}} onClick = { () => this.deleteEmployee(employee.id) } className="btn btn-danger">Deletee</button>
                                     </td>
                                 </tr>
                             )

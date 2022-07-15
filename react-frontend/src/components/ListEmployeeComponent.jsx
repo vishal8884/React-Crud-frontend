@@ -11,7 +11,7 @@ class ListEmployeeComponent extends Component {
         }
         this.addEmployee = this.addEmployee.bind(this);
         this.editEmployee = this.editEmployee.bind(this); //bind this method to component
-        this.deleteEmployee = this.deleteEmployee(this);
+        this.deleteEmployee = this.deleteEmployee.bind(this);
     }
 
     deleteEmployee(id){

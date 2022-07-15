@@ -22,6 +22,7 @@ class EmployeeService {
     }
 
     deleteEmployee(employeeId){
+        console.log("EMPLOYEE_API_BASE_URL + '/' + employeeId");
         return axios.delete(EMPLOYEE_API_BASE_URL + '/' + employeeId);
     }
 }

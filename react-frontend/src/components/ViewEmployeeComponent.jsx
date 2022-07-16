@@ -13,10 +13,11 @@ class ViewEmployeeComponent extends Component {
     }
 
     componentDidMount(){
-         EmployeeService.getEmployeeById(this.setState.id).then( res => {
+         EmployeeService.getEmployeeById(this.state.id).then( res => {
             console.log("res :: "+res);
             this.setState({employee: res.data});
          })
+        // console.log("employee :: "+employee);
     }
      
     render() {
